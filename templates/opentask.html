@@ -1,0 +1,227 @@
+<html>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200&display=swap" rel="stylesheet"> 
+<script>
+    tree = false
+    arr = []
+    newA = []
+    {% for question in data %}
+    {% if question.tree == [] %}
+    
+    {% else %}
+    {% for tree in question.tree %}
+    
+    newA.push('{{ tree }}')
+    {% endfor %}
+    arr.push(newA)
+    newA = []
+    {% endif %}
+    {% endfor %}
+    var url = document.cookie
+        var content = url.split(';')
+        var data = []
+        var token = 'none'
+                    var content = url.split(';')
+                    var data = []
+                    for (var i = 0; i < content.length; i++) {
+                        data.push(content[i].split('='));
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i][0]==' xcsrftoken' || data[i][0]=='xcsrftoken') {
+                            token = data[i][1]
+                        }
+                        else {
+                            
+                        }
+                    }
+        fetch('/api/token', {
+            method: 'POST',
+            body: JSON.stringify({
+                'token': token
+            })
+        }).then(resp => {   
+            return resp.json()
+        }).then(function(x) {
+            if (x['message'] == 'ok') {
+
+            }
+            else {
+                document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+                document.cookie = 'xcsrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+                window.location.href = '/login'
+            }
+        })
+    function submit() {
+        if (true == false) {
+            var answers = document.getElementsByClassName('ans')
+            var questions = document.getElementsByClassName('que')
+            var q = []
+            var a = []
+            console.log('{{ info }}')
+            for (var i = 0; i < answers.length; i++) {
+                q.push(questions[i].outerText)
+                a.push(answers[i].value)
+            }
+            fetch('/api/answer', {
+                method: 'POST',
+                body: JSON.stringify({
+                    'task': '{{ t }}',
+                    'subject': '{{ s }}',
+                    'x-csrftoken': token,
+                    'token': '{{ info }}',
+                    'questions': q,
+                    'answers': a 
+                })
+            }).then(resp => {
+                //window.location.href = '/dashboard'
+            })
+        }
+    else {
+            var answers = document.getElementsByClassName('ans')
+            var questions = document.getElementsByClassName('que')
+            var trees = document.getElementsByClassName('tree')
+            var q = []
+            var a = []
+            index = 0
+            ix = 0
+            console.log('{{ info }}')
+            for (var i = 0; i < questions.length; i++) {
+                
+                
+                
+                console.log(questions[i].id)
+                if (questions[i].id == 'selection') {
+                    n = {
+                        'question': questions[i].outerText,
+                        'tree': arr[index]
+                    }
+                    console.log(n)
+                    q.push(n)
+                    a.push(trees[index].selectedOptions[0].value)
+                    index += 1
+                }
+                else {
+                    n = {
+                        'question': questions[i].outerText,
+                        'tree': []
+                    }
+                    console.log(n)
+                    q.push(n)
+                    a.push(answers[ix].value)
+                    ix += 1
+                }
+            }
+            fetch('/api/answer', {
+                method: 'POST',
+                body: JSON.stringify({
+                    'task': '{{ t }}',
+                    'subject': '{{ s }}',
+                    'x-csrftoken': token,
+                    'token': '{{ info }}',
+                    'questions': q,
+                    'answers': a 
+                })
+            }).then(resp => {
+                //window.location.href = '/dashboard'
+            })
+    }
+        }
+</script>
+
+
+<style>
+      #addnew {
+            position: relative;
+            top: -5px;
+            font-family: 'Nunito', sans-serif;
+        }
+        #top {
+            width: 170px;
+            height: 40px;
+            background: white;
+            border: solid;
+            border-width: 2px;
+            border-color: rgb(19, 19, 19);
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #top:hover {
+            cursor: pointer;
+            width: 170px;
+            height: 40px;
+            background: rgb(19 , 19, 19);
+            color: white;
+            border: solid;
+            border-width: 2px;
+            border-color: rgb(19, 19, 19);
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 30px;
+        }     
+body{
+    background: black;
+    font-family: 'Outfit', sans-serif;
+}    
+#window{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    
+
+    width:1000;
+    height: auto;
+    background:white;
+
+}
+#task_title{
+    font: bold;
+    font-size: 69px;
+}
+#task_question{
+    font-size: 20px;
+
+}
+#input{
+    width: 500px;
+    height:50px;
+    background: grey;
+    border: solid;
+    border-color:black;
+}
+
+</style>
+<title>{{ t }}</title>
+<body>
+    <center>
+    <div id="window">
+     <p id="task_title">{{ t }}</p>
+     <br><br><p>{{ t_info }}</p>
+     {% for question in  data%}
+     
+     {% if question.tree == [] %}
+     <p class="que" value="normal" id="task_question">{{question.question}}</p>
+     <input class="ans" id="input" type="text">
+     {% else %}
+     <p class="que" value="select" id="selection">{{question.question}}</p>
+     <select class="tree" id="input">
+     {% for branch in question.tree %}
+     <option value="{{branch}}">{{branch}}</option>
+     {% endfor %}
+    </select>
+     {% endif %}
+     {% endfor %}
+     <br>
+     <br><br>
+     <div onclick="submit()" id="top">
+        <p id="addnew">Posalji</p>
+        <br><br>
+</div>
+    </div>
+    </center>
+
+
+</body>
+
+</html>

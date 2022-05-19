@@ -1,0 +1,50 @@
+
+<script>
+    function send() {
+        var name = document.getElementById('i').selectedOptions[0].value
+        var username = document.getElementById('stud')
+        var password = document.getElementById('pass')
+        var mail = document.getElementById('mail')
+        username = username.value
+        password = password.value
+        mail = mail.value
+        n = {
+            'username': username,
+            'x-csrftoken': 'none',
+            'accessid': 'none',
+            'tries': '0',
+            'password': password,
+            'mail': mail
+        }
+        fetch('/api/student', {
+            method: 'POST',
+            body: JSON.stringify({
+                'token': '{{ data }}',
+                'name': name,
+                'student': n
+            })
+        }).then(resp => {
+            return resp.json()
+        }).then(function (data) {
+            console.log(data)
+            var username = document.getElementById('stud')
+            var password = document.getElementById('pass')
+            username.value = ""
+            password.value = ""
+        })
+    }
+</script>
+
+<h2>Class Name</h2>
+
+<select name="lol" id="i">
+
+    {% for name in arr %}
+    <option value="{{ name }}">{{ name }}</option>
+    {% endfor %}
+</select>
+<h3>Students</h3>
+<input placeholder="Username" type="text" id="stud"><br>
+<input placeholder="Password" type="text" id="pass"><br>
+<input placeholder="E-mail" type="text" id="mail">
+<button onclick="send()" >Add Student</button>

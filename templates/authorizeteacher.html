@@ -1,0 +1,101 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200&display=swap" rel="stylesheet">
+ 
+    <script>
+        
+        function check() {
+            var token = document.getElementById('token')
+            var text = document.getElementById('idk')
+            text.innerText = "..."
+        token = token.value
+            fetch('/api/at', {
+    method: 'POST',
+    body: JSON.stringify({ 
+        'username': '{{ name }}',
+        'token': token
+})
+}).then(resp => resp.json()).then(res => {
+    if (res['message']=='ok') {
+        res = res['data']
+        token = res['xcsrftoken']
+        authtoken = res['authtoken']
+        document.cookie = 'xcsrftoken='+token+'; path=/;'
+        document.cookie = 'token=/teacher/'+authtoken+'; path=/;'
+        window.location.href = '/teacher'
+    }
+    if (res['message']=='error') {
+        text.innerText = "Pogresan verifikacijski kod, molim vas pokusajte ponovo"
+    }
+    if (res['message']=='you have tried too many times to login, please contact the administrator') {
+        text.innerText = "Vas account je zakljucan, molim vas obratite se administratoru."
+    }
+})
+        }
+    </script>
+
+    <style>
+        #placeholder {
+            font-family: 'Outfit', sans-serif;
+            width: 500px;
+            height: 400px;
+            border: solid;
+            border-color: black;
+            border-width: 1px;
+        }
+        #token {
+            width: 150px;
+            height: 50px;
+            text-align: center;
+            font-size: 24px;
+        
+        }
+        .addname {
+                margin-left: 10px;
+                
+                width: 110px;
+                height: 28px;
+                background: white;
+                border: solid;
+                border-radius: 3px;
+                border-width: 1px;
+                border-color: rgb(19, 19, 19);
+                text-align: center;
+            }
+            .addname:hover {
+                cursor: pointer;
+               
+                width: 110px;
+                height: 28px;
+                color: white;
+                background: rgb(19, 19, 19);
+                border: solid;
+                border-radius: 3px;
+                border-width: 1px;
+                border-color: rgb(19, 19, 19);
+                text-align: center;
+            }
+            .nexttext {
+                position: relative;
+                top: -12px;
+            }
+    </style>
+</head>
+<body>
+    <center>
+        <div id="placeholder">
+            <p id="idk"><strong>Molim vas unesite kod koji je poslan na vasu e-mail adresu.</strong></p>
+            <input placeholder="Kod" type="text" name="" id="token"><br><br><br>
+            <div onclick="check()" class="addname">
+                <p class="nexttext"><strong>Potvrdi</strong> </p>
+            </div>
+           
+
+        </div>
+    </center>
+    
+    
+</div>
+
+</body>

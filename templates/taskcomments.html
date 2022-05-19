@@ -1,0 +1,33 @@
+<head>
+    <script>
+        function add() {
+            var comment = document.getElementById('comment')
+            comment = comment.value 
+            fetch('/api/comment', {
+                method: 'POST',
+                body: JSON.stringify({
+                    'task': '{{ task }}',
+                    'comment': comment
+                })
+            }).then(resp => {
+                    resp.json()
+                }).then(function (x) {
+                    if (x['status']=='ok') {
+                        alert('komentar dodan')
+                    }
+                }
+                )
+        }
+    </script>
+</head>
+<body>
+    <div id="comments">
+        {% for comment in arr %}
+        {{ comment.comment }} <br>
+        {% for threadcm in comment.thread %}
+        {{threadcm.comment}} <br>
+        {% endfor %}
+        {% endfor %}
+    </div>
+    <input value="komentar" type="text" name="" id="comment"><button onclick="add()">dodaj komentar</button>
+</body>

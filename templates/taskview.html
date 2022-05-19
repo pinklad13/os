@@ -1,0 +1,55 @@
+ <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+     <script src='{{ url_for("static", filename="dghF892ojBHYsi2bflks.js") }}'>
+     </script>
+     <style>
+         .student {
+            margin-left: 100px;
+             width: 400px;
+             height: 30px;
+             border: solid;
+             border-radius: 2px;
+             border-width: 1px;
+             border-color: rgb(19, 19, 19);
+             color: rgb(19, 19, 19);
+             font-family: 'Nunito', sans-serif;
+         }
+         .student:hover {
+             cursor: pointer;
+            margin-left: 100px;
+             width: 400px;
+             height: 30px;
+             border: solid;
+             border-radius: 2px;
+             color: seashell;
+             border-width: 2px;
+             background: rgb(19, 19, 19);
+             border-color: rgb(19, 19, 19);
+             font-family: 'Nunito', sans-serif;
+         }
+         .p {
+             font-family: 'Nunito', sans-serif;
+             position: relative;
+             top: -12px;
+         }
+         .p2 {
+             font-family: 'Nunito', sans-serif;
+         }
+     </style>
+ </head>
+<body>
+    {% if len_ == 1 %}
+    <p class="p2">Trenutno niko nije uradio ovaj zadatak :(</p>
+    {% else %}
+    {% for stud in data %}
+    {% if stud == "" %}
+
+    {% else %}
+    <div class="student" onclick="window.location.href = document.URL + '/{{ stud }}'"><p class="p">{{ stud }}</p></div>
+    {% endif %}
+<br>
+{% endfor %}
+{% endif %}
+</body>

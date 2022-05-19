@@ -1,0 +1,110 @@
+<head>
+    <script>
+        var url = document.cookie
+            var content = url.split(';')
+            var data = []
+            var token = 'none'
+                        var content = url.split(';')
+                        var data = []
+                        for (var i = 0; i < content.length; i++) {
+                            data.push(content[i].split('='));
+                        }
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i][0]==' xcsrftoken' || data[i][0]=='xcsrftoken') {
+    
+                                token = data[i][1]
+                            }
+                            else {
+                                
+                            }
+                        }
+            fetch('/api/token2', {
+                method: 'POST',
+                body: JSON.stringify({
+                    'token': token
+                })
+            }).then(resp => {
+                return resp.json()
+            }).then(function(x) {
+                if (x['message'] == 'ok') {
+    
+                }
+                else {
+                    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+                    document.cookie = 'xcsrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+                    window.location.href = '/login'
+                }
+            })
+        function update() {
+            var points = document.getElementById('points_input')
+            points = points.value 
+            fetch('/api/points', {
+        method: 'PATCH',
+        body: JSON.stringify({
+            'token': '{{ token }}',
+            'x-csrftoken': token,
+            'student': '{{ student }}',
+            'task': '{{ task }}',
+            'points': points
+    })
+    })
+        }
+    </script>
+    <style>
+        body{
+    background: black;
+    font-family: 'Outfit', sans-serif;
+}    
+#window{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    width:1000;
+    height: auto;
+    background:white;
+
+}
+#task_title{
+    font: bold;
+    font-size: 69px;
+}
+#task_question{
+    font-size: 20px;
+
+}
+#input{
+    width: 500px;
+    height:50px;
+    background: rgb(196, 195, 195);
+    border: solid;
+    border-color:black;
+    margin-bottom: 30px;
+}
+#points {
+    position: relative;
+    top:-60px;
+}
+#btn {
+    position: relative;
+    top: -70px;
+}
+    </style>
+    
+</head>
+<title>{{ student }} | {{task}}</title>
+<body>
+  
+    <center>
+        <div id="window">
+         <p id="task_title">{{ student }}</p>
+         <br>
+         <p id="points">Ostvareni Bodovi: <input value="{{ points }}" id="points_input"></p><button id="btn" onclick="update()">Dodaj Poene</button>
+         {% for i in range(_qd_)%}
+         <p class="que" id="task_question">{{data1[i].question}}</p>
+         <input value="{{ data2[i] }}" class="ans" id="input" type="text"> 
+         {% endfor %}
+         <br>
+        </div>
+        </center>
+    
+</body>

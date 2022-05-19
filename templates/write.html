@@ -1,0 +1,256 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+   <script src='{{ url_for("static", filename="dghF892ojBHYsi2bflks.js") }}'></script>
+<script>
+   
+    var content = []
+    function next1() {
+        var t = document.getElementById('first')
+        var t2 = document.getElementById('second')
+        t.style.visibility = "collapse"
+        t2.style.position = "relative"
+        t2.style.top = "-140px"
+        t2.style.visibility = "visible"
+    }
+    function next2() {
+        var t = document.getElementById('third')
+        var t2 = document.getElementById('second')
+        t2.style.visibility = "collapse"
+        t.style.position = "relative"
+        t.style.top = "-255px"
+        t.style.visibility = "visible"
+    }
+    function next3() {
+        var t4 = document.getElementById('third')
+        var t3 = document.getElementById('forth')
+        t4.style.visibility = "collapse"
+        t3.style.position = "relative"
+        t3.style.top = "-356px"
+        t3.style.visibility = "visible"
+        time = '{{ time_1_ }}'
+        const idk = document.getElementById('idk')
+        const days = document.getElementById('time')
+        days.addEventListener('change', (event) => {
+        idk.textContent = `${event.target.value}.${time}:18:00`;
+});
+    }
+    function addquestion() {
+        var question = document.getElementById('question')
+        question = question.value
+        if (question.includes('[')) {
+            tree = question.split('[')
+            question = tree[0]
+            newTreeGen = []
+            for (var i = 1; i < tree.length; i++) {
+                newTreeGen.push(tree[i].split(']')[0])
+                
+            }
+            
+        }
+        else {
+            newTreeGen = []
+        }
+        console.log(newTreeGen)
+        var n = {
+            'question': question,
+            'tree': newTreeGen
+        }
+        content.push(n)
+        question.value = ""
+        newTreeGen = []
+    }
+    function addtask() {
+        var name = document.getElementById('name')
+        var cname = document.getElementById('class').selectedOptions[0].value
+        var timeSet = document.getElementById('time')
+        var desc = document.getElementById('desc')
+        globalclass = cname.value
+        globalname = name.value
+        name = name.value
+        timeSet = timeSet.value
+        desc = desc.value
+        fetch('/api/write', {
+            method: 'POST',
+            body: JSON.stringify({
+                't_info': desc,
+                'password': '{{ p }}',
+                'time': 0,
+                'x-csrftoken': token,
+                'name': name,
+                'class': '{{ cn }}',
+                'points': 0,
+                'day': timeSet,
+                'author': '{{ a }}',
+                'subject': '{{ s }}',
+                'content': content
+            })
+        }).then(resp => {
+            window.location.href = '/teacher'
+        })
+        
+    }
+    </script> 
+        <style>
+            #block {
+                float: left;
+                width: 200px;
+                height: 100px;
+            }
+            #content {
+                float: left;
+                font-family: 'Nunito', sans-serif;
+            }
+            #name {
+                font-size: 17px;
+                margin-right: 10px;
+                float: left;
+                width: 400px;
+                height: 30px;
+                border: solid;
+                border-radius: 3px;
+                border-width: 1px;
+                border-color: rgb(19, 19, 19);
+            }
+            #class {
+                font-size: 17px;
+                margin-right: 10px;
+                float: left;
+                width: 400px;
+                height: 30px;
+                border: solid;
+                border-radius: 3px;
+                border-width: 1px;
+                border-color: rgb(19, 19, 19);
+            }
+            #time {
+                font-size: 17px;
+                margin-right: 10px;
+                float: left;
+                width: 400px;
+                height: 30px;
+                border: solid;
+                border-radius: 3px;
+                border-width: 1px;
+                border-color: rgb(19, 19, 19);
+            }
+            .addname {
+                margin-left: 10px;
+                float: left;
+                width: 110px;
+                height: 28px;
+                background: white;
+                border: solid;
+                border-radius: 3px;
+                border-width: 1px;
+                border-color: rgb(19, 19, 19);
+                text-align: center;
+            }
+            .addname:hover {
+                cursor: pointer;
+                float: left;
+                width: 110px;
+                height: 28px;
+                color: white;
+                background: rgb(19, 19, 19);
+                border: solid;
+                border-radius: 3px;
+                border-width: 1px;
+                border-color: rgb(19, 19, 19);
+                text-align: center;
+            }
+            .nexttext {
+                position: relative;
+                top: -12px;
+            }
+            #second {
+                visibility: hidden;
+            }
+            #third {
+                visibility: hidden;
+            }
+            #question {
+                font-size: 17px;
+                margin-right: 10px;
+                float: left;
+                width: 400px;
+                height: auto;
+                border: solid;
+                border-radius: 3px;
+                border-width: 1px;
+                border-color: rgb(19, 19, 19);
+            }
+            #desc {
+                font-size: 17px;
+                margin-right: 10px;
+                float: left;
+                width: 400px;
+                height: 80px;
+                border: solid;
+                border-radius: 3px;
+                border-width: 1px;
+                border-color: rgb(19, 19, 19);
+            }
+            #forth {
+                visibility: hidden;
+            }
+        </style>
+</head>
+
+<body>
+<div id="block">
+
+</div>
+<div id="content">
+    <div id="first">
+     <h2>Ime Zadatka</h2>
+    <br>
+<input placeholder="Name of the task" id="name" type="text">
+<br>
+<input placeholder="Opis zadatka" id="desc">
+<div onclick="next1()" class="addname">
+    <p class="nexttext">Dalje</p>
+</div>
+<br>   
+    </div>
+    <div id="second">
+        <br>
+        <h2>Razred</h2>
+        <br><select name="class" id="class">
+        {% for class in classes %}
+<option value="{{ class }}">{{ class }}</option>
+        {% endfor %}
+    </select>
+<div onclick="next2()" class="addname">
+    <p class="nexttext">Dalje</p>
+</div>
+<br>
+</div>
+<div id="third">
+    <h2>Sadrzaj Zadatka</h2>
+    <br>
+    <textarea placeholder="Pitanje" id="question" type="textarea"></textarea>
+    <div onclick="addquestion()" class="addname">
+        <p class="nexttext">Dodaj Pitanje</p>
+    </div>
+    <div onclick="next3()" class="addname">
+        <p class="nexttext">Dalje</p>
+    </div>
+</div>
+
+<div id="forth">
+    <h2>Vrijeme Zadatka</h2>
+    <br>
+    <p id="idk">{{ time_1_ }} 18:00</p>
+    <input placeholder="Vrijeme (dani) od danas" type="text" name="" id="time"> 
+    <div onclick="addtask()" class="addname">
+        <p class="nexttext">Kreiraj Zadatak</p>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+

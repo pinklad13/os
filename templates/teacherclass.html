@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: rgb(228, 228, 175);
+        }
+        .headline {
+            width: auto;
+            height: 70px;
+            background-color: white;
+        }
+        .logo {
+            float: left;
+            width: 65px;
+            height: 65px;
+        }
+        .name {
+            font-family: 'Hind Siliguri', sans-serif;
+            float: left;
+            font-size: 25px;
+            position: relative;
+            top: -10px;
+        }
+        .welcome-text {
+        position: relative;
+        top: -20px;
+        font-family: 'Assistant', sans-serif;
+        }
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+        
+            
+        }
+        .navigator {
+            margin-right: 10px;
+            width: auto;
+            float: right;
+            text-align: center;
+        }
+        .sub-name {
+            float: inline-start;
+            position: relative;
+            left: -90px;
+            top: 25px;
+            font-family: 'Assistant', sans-serif;
+        }
+    </style>
+    <style>
+        .jmp {
+            width: 1000px;
+            max-width: 80%;
+            height: 300px;
+            background-image: url('/static/pics/class1.png');
+            background-repeat: no-repeat;
+            background-size: 1000px 700px;
+            filter: brightness(0.5);
+        
+            color: white;
+        }
+        .name1 {
+            font-family: 'Hind Siliguri', sans-serif;
+            float: left;
+            font-size: 25px;
+            color: white;
+            position: relative;
+            top: 100px;
+            margin-left: 20px;
+        }
+
+
+        .sub-name1 {
+            font-family: 'Hind Siliguri', sans-serif;
+            float: inline-start;
+            position: relative;
+            top: 140px;
+            color: white;
+            left: -80px;
+        }
+        .holder-class {
+            width: 1000px;
+            max-width: 80%;
+            position: relative;
+            top: -200px;
+        }
+    </style>
+    <style>
+        .new-task {
+            width: 800px;
+            max-width: 80%;
+            height: 60px;
+            background: white;
+        }
+        .new-task:hover {
+            cursor: pointer;
+            width: 800px;
+            max-width: 80%;
+            height: 60px;
+            background: white;
+        }
+        .profile-pic-2 {
+            width: 40px;
+            height: 40px;
+            float: left;
+            position: relative;
+            left: -60px;
+            top: 10px;
+        }
+        .new-task-hint {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 15px;
+            float: left;
+            color: rgb(77, 76, 76);
+            position: relative;
+            left: -30px;
+            top: 5px;
+        }
+    </style>
+    <style>
+        .task {
+            width: 800px;
+            max-width: 80%;
+            height: 200px;
+            background: white;
+        
+        }
+        .task:hover {
+            width: 800px;
+            max-width: 80%;
+            height: 200px;
+            background: white;
+            cursor: pointer;
+        }
+        .profile-pic-3 {
+            width: 40px;
+            height: 40px;
+            float: left;
+            position: relative;
+            left: 20px;
+            top: 10px;
+        }
+        .task-author {
+            font-family: 'Hind Siliguri', sans-serif;
+            float: left;
+            position: relative;
+            left: 30px;
+            top: -5px;
+        }
+        .task-date {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 13px;
+            float: left;
+            position: relative;
+           left: -5px;
+            top: 18px;
+            color: rgb(77, 76, 76);
+        }
+        .task-name {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 21px;
+            float: left;
+            position: relative;
+            left: -120px;
+            top: 50px;
+        }
+        .task-descriptor {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 13px;
+            
+            position: relative;
+            left: -200px;
+            top: 88px;
+            color: rgb(77, 76, 76);
+        }
+        
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucionica | </title>
+</head>
+<body>
+    <div class="headline">
+        <div id="mss" class="mss">
+            <img class="logo" src="/static/pics/logo1.png" alt="">
+            <p class="name">{{ classname }}</p>
+            <p class="sub-name">{{ subject }}</p>
+        </div>
+        <div class="navigator">
+            <img class="profile-pic" src="/static/pics/dummy.png" alt="">
+            <p class="welcome-text">{{ name }}</p>
+            </div>
+        </div>
+        <center>
+            <div class="jmp">
+                
+            </div>
+            <div class="holder-class">
+
+                <p class="name1">{{ classname }}</p>
+                <p class="sub-name1">{{ subject }}</p>
+            </div>
+        </center>
+        <br>
+<center>
+    <div onclick="window.location.href = '/teacher/{{ classname }}/write'" class="new-task">
+        <img class="profile-pic-2" src="/static/pics/dummy.png" alt="">
+        <p class="new-task-hint">Dodajte novi zadatak ucionici <strong>Ucionica</strong></p>
+    </div>
+<br><br>
+{% for task in data %}
+    <div onclick="window.location.href = '/teacher/task/{{ task.name }}'" class="task">
+        <img class="profile-pic-3" src="/static/pics/dummy.png" alt="">
+        <p class="task-author">{{ name }}</p>
+        <p class="task-date">{{ task.time }} PM</p>
+        <div class="info-holder">
+            <p class="task-name">{{ task.name }}</p>
+         <!-- <p class="task-descriptor">{{ task.desc }}</p>  -->
+
+        </div>
+        
+    </div>
+    <br>
+{% endfor %} 
+</center>
+</body>
+</html>

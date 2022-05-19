@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+    <script>
+        function show1() {
+        document.getElementById('tracker1').style.background = 'coral'
+    }
+    function hide1() {
+        document.getElementById('tracker1').style.background = 'gray'
+
+    }
+    function show2() {
+       
+    }
+    function hide2() {
+       
+
+    }    function show3() {
+        document.getElementById('tracker3').style.background = 'coral'
+    }
+    function hide3() {
+        document.getElementById('tracker3').style.background = 'gray'
+
+    }
+    </script>
+    <style>
+        .headline {
+            width: auto;
+            height: 70px;
+            background-color: beige;
+        }
+        .logo {
+            float: left;
+            width: 65px;
+            height: 65px;
+        }
+        .name {
+            font-family: 'Hind Siliguri', sans-serif;
+            float: left;
+            font-size: 25px;
+            position: relative;
+            top: -10px;
+        }
+        .about {
+            text-align: center;
+
+            font-size: 20px;
+            font-family: 'Hind Siliguri', sans-serif;
+
+        }
+        .login {
+            text-align: center;
+
+            font-size: 20px;
+            font-family: 'Hind Siliguri', sans-serif;
+
+        }
+        .home {
+            text-align: center;
+
+            font-size: 20px;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        .placeholder-login {
+            margin-right: 10px;
+            float:right;
+        }
+        .placeholder-home {
+            margin-right: 10px;
+            float:right
+        }
+        .placeholder-about {
+            margin-right: 10px;
+            float: right;
+        }
+        .placeholder-login:hover {
+            cursor: pointer;
+            margin-right: 10px;
+            float:right;
+        }
+        .placeholder-home:hover {
+            cursor: pointer;
+            margin-right: 10px;
+            float:right
+        }
+        .placeholder-about:hover {
+            cursor: pointer;
+            margin-right: 10px;
+            float: right;
+        }
+        .about:hover {
+            text-align: center;
+            cursor: pointer;
+            font-size: 20px;
+            font-family: 'Hind Siliguri', sans-serif;
+
+        }
+        .login:hover {
+            cursor: pointer;
+            text-align: center;
+            font-size: 20px;
+            font-family: 'Hind Siliguri', sans-serif;
+
+        }
+        .home:hover {
+            text-align: center;
+            cursor: pointer;
+
+            font-size: 20px;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        #tracker1 {
+
+            width: 90px;
+            height: 2px;
+            background: gray;
+        }
+        #tracker2 {
+            width: 90px;
+            height: 2px;
+            background: coral;
+        }
+        #tracker3 {
+            width: 90px;
+            height: 2px;
+            background: gray;
+        }
+        .status-bar {
+            position: relative;
+            top: -10px;
+        }
+    </style>
+    <style>
+        .info-txt {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 25px;
+        }
+    .line {
+        width: auto;
+        height: 1px;
+        background: black;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="static/pics/logo1.png">
+    <title>Info | MSŠ Busovača Online Nastava</title>
+</head>
+<body>
+    <div id="headline" class="headline">
+        <div id="mss" class="mss">
+            <img class="logo" src="static/pics/logo1.png" alt="">
+            <p class="name">MSŠ Busovača</p>
+        </div>
+        <div class="navigator">
+            <div onclick="window.location.href = '/login'" onmouseleave="hide1()" onmouseover="show1()" id="login" class="placeholder-login">
+                <p class="login">Prijava</p>
+                <div class="status-bar" id="tracker1">
+                </div>
+            </div>
+            <div onmouseleave="hide2()" onmouseover="show2()" id="about" class="placeholder-about">
+                <p class="about">Info</p>
+                <div class="status-bar" id="tracker2">
+                </div>
+            </div>
+            <div onclick="window.location.href = '/'" onmouseleave="hide3()" onmouseover="show3()" id="home" class="placeholder-home">
+                <p class="home">Početna</p>
+                <div class="status-bar" id="tracker3">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info">
+        <p class="info-txt">Info</p>
+        <div class="line"></div>
+        <p class="info-text-content"></p>
+    </div>
+</body>
+</html>

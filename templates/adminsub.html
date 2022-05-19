@@ -1,0 +1,33 @@
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200&display=swap" rel="stylesheet">
+<script>
+        var ot = []
+        {% for item in arr %}
+        ot.push('{{item}}')
+        {% endfor %} 
+        </script>
+    <script src='/static/lvogvifhkjbq.js'></script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+        #confirm {
+            width: 600px;
+            height: 150px;
+            border-radius: 5px;
+            background: wheat;
+            position: relative;
+            top: 200px;
+        }
+    </style>
+</head>
+<body>
+    <input id="subname" placeholder="Ime predmeta" type="text"><button onclick="addSub()">Dodaj Predmet</button><br><br><button onclick="save()">Sacuvaj</button>
+    <br><br>
+    <div id="content">
+
+    </div>
+</body>

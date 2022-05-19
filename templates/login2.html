@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant&display=swap" rel="stylesheet">
+ <link rel="icon" type="image/x-icon" href="static/pics/logo1.png">
+<script>
+    var url = document.cookie
+        var content = url.split(';')
+        var data = []
+        var token = ''
+                    var content = url.split(';')
+                    var data = []
+                    for (var i = 0; i < content.length; i++) {
+                        data.push(content[i].split('='));
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i][0]==' xcsrftoken' || data[i][0]=='xcsrftoken') {
+                            token = data[i][1]
+                        }
+                        else {
+                            token = 'b1babf14f6c9da8efd21105fe773e9e677438074cbc27a919f25b04f'
+                        }
+                    }
+
+        function login() {
+            text = document.getElementById('notifier')
+            text.innerHTML = "Molimo pričekajte"
+                    var cookie = document.cookie
+
+                    var u = document.getElementById('username').value
+                var p = document.getElementById('password').value
+                fetch('/api/teacher', {
+                    mode: 'no-cors',
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'appliction/json'
+                    },
+                    body: JSON.stringify({
+                        username: u,
+                        password: p,
+                        'x-csrftoken': token
+                    })
+                }).then(resp => {
+                    return resp.json()
+                }).then(function (x){
+                    if (x['status']=='authorized') {
+                        datatoken = x['token']
+                        document.cookie = 'token=/teacher/'+datatoken
+                        document.cookie = 'usf=1786'
+                        document.cookie = 'xcsrftoken='+token
+                        document.cookie = 'data=1;'
+                        window.location.href = '/teacher'
+                    }
+                    else if (x['message'] == 'newloc') {
+
+                        text = document.getElementById('notifier')
+                       text.innerHTML = "..."
+                       window.location.href = '/authorize/teacher/'+x['token']
+                   }
+                   else {
+
+                       text.innerText = "Pogrešna lozinka ili account ne postoji"
+                   }
+                })
+                }
+
+</script>
+    <style>
+        body {
+            background: rgb(47, 72, 47);
+        }
+        .box {
+            width: 900px;
+            height: 500px;
+            background: blanchedalmond;
+        }
+        .image-holder {
+            width: 450px;
+            height: 500px;
+            background-image: url('static/pics/headline2.png');
+            background-repeat: no-repeat;
+            background-size: 800px 500px;
+            float: left;
+        }
+        .headline {
+            font-family: 'Dancing Script', cursive;
+            font-size: 35px;
+            position: relative;
+            top: 25px;
+        }
+        .welcome-sign {
+            font-family: 'Maven Pro', sans-serif;
+        }
+        .input-field {
+            width: 300px;
+            float: left;
+            border: solid;
+            margin-left: 20px;
+            border-top: black;
+            border-left: black;
+            border-right: black;
+            background: blanchedalmond;
+            border-width: 1px;
+            font-size: 15px;
+            font-family: 'Assistant', sans-serif;
+        }
+        .input-field:focus {
+    outline: none;
+}
+        .show-case-order {
+            font-family: 'Assistant', sans-serif;
+            font-size: 13px;
+            color: rgb(111, 111, 111);
+            position: relative;
+            left: -155px;
+            top: 15px;
+        }
+        .show-case-order-1 {
+            font-family: 'Assistant', sans-serif;
+            font-size: 13px;
+            color: rgb(111, 111, 111);
+            position: relative;
+            left: -175px;
+            top: 15px;
+        }
+        .login-final-type-button {
+            width: 150px;
+            height: 40px;
+            background: rgb(43, 42, 42);
+            position: relative;
+            left: 225px;
+            border-radius: 25px;
+        }
+        .login-final-type-button:hover {
+            width: 150px;
+            height: 40px;
+            background: rgb(4, 4, 4);
+            position: relative;
+            left: 225px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        .login-button-text {
+            position: relative;
+            left: -35px;
+            top: 7px;
+            font-size: large;
+            color: blanchedalmond;
+            font-family: 'Assistant', sans-serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prijava | Msš Busovača</title>
+
+</head>
+<body>
+    <center>
+        <div class="box">
+            <div class="image-holder">
+            </div>
+            <div class="login-form-holder">
+                <p class="headline">Msš Busovača</p>
+
+                <p id="notifier" class="welcome-sign">Dobro došli, prijavite se ispod u svoj račun <strong>za profesore</strong>!</p>
+                <br><br>
+                <div class="login-class">
+                   <p class="show-case-order">Username ili email</p>
+                <input id="username" class="input-field" type="text"> <br>
+                <p class="show-case-order-1">Passsword</p>
+                <input id="password" class="input-field" type="text">
+                </div>
+                <br><br><br><br><br><br>
+                <div onclick="login()" class="login-final-type-button">
+
+                        <p class="login-button-text">Prijava</p>
+
+                </div>
+            </div>
+        </div>
+    </center>
+</body>
+</html>

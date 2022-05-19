@@ -1,0 +1,38 @@
+<script>
+    function add() {
+        var username = document.getElementById('username')
+        var password = document.getElementById('password')
+        var subject = document.getElementById('subject')
+        var mail = document.getElementById('mail')
+        username = username.value 
+        password = password.value
+        subject = subject.selectedOptions[0].value
+        mail = mail.value
+        fetch('/api/addteacher', {
+            method: 'POST',
+            body: JSON.stringify({
+                'token': '{{ data }}',
+                'username': username,
+                'password': password,
+                'mail': mail,
+                'subject': subject,
+                'accessid': 'none',
+                'tries': 0,
+                'xcsrftoken': 'none',
+                'key': '{{ id }}'
+            })
+        })
+        alert("Profesor Dodan.")
+    }
+</script>
+
+<input placeholder="Username" id="username" type="text">
+<input placeholder="Password" type="text"  id="password">
+<select id="subject" name="">
+    {% for item in arr %}
+    <option value="{{ item }}">{{ item }}</option>
+    {% endfor %}
+</select>
+<br>
+<input placeholder="E-mail" type="text"  id="mail"><br>
+<button onclick="add()" >Add Teacher</button>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+<html lang="en">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant&display=swap" rel="stylesheet">
+    <script>
+        window.onload = function() {
+            var h = document.getElementsByClassName('top-part')
+            for (var i = 0; i < h.length; i++) {
+                var t = Math.random() * 10
+                t = t.toString()
+                console.log(t[2])
+                t = t[0]
+                if (t == '1') {
+                    h[i].style.backgroundImage = 'url("static/pics/class1.png")'
+                } 
+                else if (t == '2') {
+                    h[i].style.backgroundImage = 'url("static/pics/class2.png")'
+                } 
+                else if (t == '3') {
+                    h[i].style.backgroundImage = 'url("static/pics/class3.png")'
+                } 
+                else if (t == '4') {
+                    h[i].style.backgroundImage = 'url("static/pics/class4.png")'
+                }
+                else if (t == '5') {
+                    h[i].style.backgroundImage = 'url("static/pics/class5.png")'
+                } 
+                else if (t == '6') {
+                    h[i].style.backgroundImage = 'url("static/pics/class6.png")'
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: rgb(228, 228, 175);
+        }
+        .headline {
+            width: auto;
+            height: 70px;
+            background-color: white;
+        }
+        .logo {
+            float: left;
+            width: 65px;
+            height: 65px;
+        }
+        .name {
+            font-family: 'Hind Siliguri', sans-serif;
+            float: left;
+            font-size: 25px;
+            position: relative;
+            top: -10px;
+        }
+        .welcome-text {
+           position: relative;
+           top: -20px;
+           font-family: 'Assistant', sans-serif;
+        }
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+           
+            
+        }
+        .navigator {
+            margin-right: 10px;
+            width: auto;
+            float: right;
+            text-align: center;
+        }
+        
+    </style>
+    <style>
+        .class-nav {
+            width: 250px;
+            height: 250px;
+            background: white;
+            margin-left: 15px;
+            float: left;
+        
+        }
+        .class-nav:hover {
+            width: 250px;
+            height: 250px;
+            background: white;
+            margin-left: 15px;
+            float: left;
+            cursor: pointer;
+        }
+        .top-part {
+            width: 250px;
+            height: 100px;
+            background-image: url('static/pics/class3.png');
+            background-repeat: no-repeat;
+            background-size: 350px 230px;
+            filter: brightness(0.4);
+        }
+        .bottom-part {
+            width: 250px;
+            height: 150px;
+        }
+        .class-invite-text {
+            font-family: 'Assistant', sans-serif;
+            font-size: large;
+            margin-left: 15px;
+            position: relative;
+            top: -30px;
+        }
+        .class-name {
+            font-family: 'Assistant', sans-serif;
+            font-size: large;
+            margin-left: 15px;
+            color: white;
+            position: relative;
+            top: -100px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dobro Dosli | </title>
+</head>
+<body>
+    <div class="headline">
+        <div id="mss" class="mss">
+            <img class="logo" src="static/pics/logo1.png" alt="">
+            <p class="name">MSS Busovaca</p>
+        </div>
+        <div class="navigator">
+            <img class="profile-pic" src="static/pics/dummy.png" alt="">
+            <p class="welcome-text">{{ name }}</p>
+            </div>
+        </div>
+        <br><br>
+    <div class="classes">
+        {% for class in data %}
+        <div onclick="window.location.href = '/teacher/{{ class }}'" class="class-nav">
+            <div class="top-part">
+                
+            </div>
+            <div class="bottom-part">
+                <p class="class-name">{{ class }}</p>
+                <p class="class-invite-text">Pogledaj ucionicu</p>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

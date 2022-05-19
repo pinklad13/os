@@ -1,0 +1,273 @@
+<html>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200&display=swap" rel="stylesheet">
+    <script>
+         var url = document.cookie
+        var content = url.split(';')
+        var data = []
+        var token = 'none'
+                    var content = url.split(';')
+                    var data = []
+                    for (var i = 0; i < content.length; i++) {
+                        data.push(content[i].split('='));
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i][0]==' xcsrftoken' || data[i][0]=='xcsrftoken') {
+
+                            token = data[i][1]
+                        }
+                        else {
+                            
+                        }
+                    }
+        fetch('/api/token', {
+            method: 'POST',
+            body: JSON.stringify({
+                'token': token
+            })
+        }).then(resp => {
+            return resp.json()
+        }).then(function(x) {
+            if (x['message'] == 'ok') {
+
+            }
+            else {
+                document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+                document.cookie = 'xcsrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+                window.location.href = '/login'
+            }
+        })
+        function show() {
+            var part = document.getElementById('cuna')
+            part.style.background = 'red'
+        }
+        function back() {
+            var part = document.getElementById('cuna')
+            part.style.background = "rgb(19, 19, 19)"
+        }
+        function show1() {
+            var part = document.getElementById('cuna1')
+            part.style.background = 'red'
+        }
+        function back1() {
+            var part = document.getElementById('cuna1')
+            part.style.background = "rgb(19, 19, 19)"
+        }
+        function show2() {
+            var part = document.getElementById('cuna2')
+            part.style.background = 'red'
+        }
+        function back2() {
+            var part = document.getElementById('cuna2')
+            part.style.background = 'rgb(19, 19, 19)'
+        }
+        function back3() {
+            var part = document.getElementById('cuna3')
+            part.style.background = "rgb(19, 19, 19)"
+        }
+        function show3() {
+            var part = document.getElementById('cuna3')
+            part.style.background = "red"
+        }
+        function task(name) {
+            window.location.href = document.URL + '/task/' + name
+        }
+    </script>
+
+<style>
+        body{
+            font-family: 'Outfit', sans-serif;
+        }
+        #notification {
+            width: 17px;
+            height: 22px;
+            float: right;
+            position: relative;
+            top: 12px; 
+            right: 20px;
+        }
+        #cuna {
+            float: left;
+            position: relative;
+            top: 40px;
+            width: 75px;
+            height: 5px;
+            background: rgb(19, 19, 19);
+        }
+        #cuna1 {
+            float: left;
+            position: relative;
+            top: 40px;
+            width: 75px;
+            height: 5px;
+            background: rgb(19, 19, 19);
+        }
+        #cuna2 {
+            float: left;
+            position: relative;
+            top: 40px;
+            width: 75px;
+            height: 5px;
+            background: rgb(19, 19, 19);
+        }
+        #cuna3 {
+            float: right;
+            position: relative;
+            top: 40px;
+            width: 75px;
+            height: 5px;
+            background: rgb(19, 19, 19);
+        }
+        .headline {
+            background: rgb(19, 19, 19);
+            width: auto;
+            height: 45px;
+            
+        }
+
+        .items {
+            position: relative;
+            left: 5px;
+            top: -42px;
+            float: center;
+            color:whitesmoke;
+            font-family: 'Outfit', sans-serif;
+            margin-left: 10px;
+        }
+        .items:hover {
+            position: relative;
+            cursor: pointer;
+            left: 5px;
+            float: center;
+            color: whitesmoke;
+            font-family: 'Outfit', sans-serif;
+            margin-left: 10px;
+        }
+        .login {
+            float: right;
+            position: relative;
+            left: 77px;
+            top: -4px;
+            color:whitesmoke;
+            font-family: 'Outfit', sans-serif;
+            margin-left: 10px;
+        }
+        .login:hover {
+            cursor: pointer;
+            float: right;
+            position: relative;
+            color:whitesmoke;
+            font-family: 'Outfit', sans-serif;
+            margin-left: 10px;
+        }
+        #task{
+            width:auto;
+            height:200px;
+            background: linear-gradient(rgb(155, 156, 157), rgb(108, 169, 202));
+            border-radius:20px;
+            border: solid;
+            border-color: rgb(31, 31, 31);
+        }
+        #task:hover{
+            border-width: 5px;
+            border-bottom-color: rgb(108, 169, 202);
+
+
+        }
+        #task_logo{
+            border: solid;
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            background: white;
+            position: relative;
+            left: 20px;
+            top: 20px;
+            /* border-color: red; */
+            border-width: 5px;
+            float: left;
+           
+        }
+        #task_name{
+            color: black;
+            font-size: xx-large;
+            font-weight: bold;
+            position: relative;
+            top: 20px;
+            left: 50px;
+
+        }
+        #task_subject{
+            color: black;
+            position: relative;
+            left: 50px;
+        }
+        #timetx{
+            float:right;
+            color: black;
+            font-weight: bold;
+            position: relative;
+            bottom: 110px;
+            right: 20px;
+            font-size: x-large;
+        }
+        #timetx:hover {
+            float:right;
+            color: rgb(230, 226, 226);
+            font-weight: bold;
+            position: relative;
+            bottom: 110px;
+            right: 20px;
+            font-size: x-large;
+        }
+        #time{
+            float: right;  
+            color: black;
+            position: relative;
+            top: -50px;
+            left: 90px;
+        }
+        #date{
+            color: black;
+            float: right;
+            position: relative;
+            top: -70px;
+            left: 60px;
+        }
+        
+        
+</style>
+
+<title>Zadaci</title>
+<body>
+
+    <div class="headline">  
+        <div id="cuna">
+            <p onmouseleave="back()" onmouseover="show()" class="items">Home</p>
+        </div>
+        <div  id="cuna1">
+            <p onclick="window.location.href = '/about'" onmouseleave="back1()" onmouseover="show1()"  class="items">About</p>
+        </div>
+        <div id="cuna2">
+            <p onmouseleave="back2()" onmouseover="show2()" class="items">Class</p>
+        </div>
+        
+        <div  id="cuna3" ></div>
+        <img onclick="window.location.href = '/notifications'" id="notification" src="{{ image }}">
+        <p  onclick="window.location.href = '/profile'" onmouseleave="back3()" onmouseover="show3()" class="login">Profile</p>
+    </div><br><br><br>
+    {% for taskname in data %}
+    <div id="task", onclick="task('{{ taskname.name }}')">
+        <div id="task_logo"></div>        
+        <p id="task_name">{{ taskname.name }}</p>
+        <p id="task_subject">{{ taskname.subject }}</p>
+        <a href="/task/{{taskname.name}}/comments" id="timetx">Komentari</a>
+        <p id="date">{{ taskname.time }}</p>
+    </div>
+    <br>
+    {% endfor %}
+
+</body>
+
+</html>

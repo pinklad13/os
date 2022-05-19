@@ -1,0 +1,96 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200&display=swap" rel="stylesheet"> 
+    <style>
+        #addnew {
+            position: relative;
+            top: -5px;
+            font-family: 'Nunito', sans-serif;
+        }
+        #top {
+            float: right;
+            width: 170px;
+            height: 40px;
+            background: white;
+            border: solid;
+            border-width: 2px;
+            border-color: rgb(19, 19, 19);
+            border-radius: 5px;
+            text-align: center;
+            position: relative;
+            top: -60px;
+        }
+        #top:hover {
+            position: relative;
+            top: -60px;
+            cursor: pointer;
+            float: right;
+            width: 170px;
+            height: 40px;
+            background: rgb(19 , 19, 19);
+            color: white;
+            border: solid;
+            border-width: 2px;
+            border-color: rgb(19, 19, 19);
+            border-radius: 5px;
+            text-align: center;
+        }
+        .item {
+            font-family: 'Outfit', sans-serif;
+            width: auto;
+            height: 40px;
+            border: solid;
+            border-color: rgb(19, 19, 19);
+            border-width: 2px;
+            margin-left: 40px;
+            color: rgb(19, 19, 19);
+        }
+        .item:hover {
+            cursor: pointer;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            width: auto;
+            height: 40px;
+            border: solid;
+            background: rgb(19, 19, 19);
+            border-color: rgb(19, 19, 19);
+            border-width: 2px;
+            margin-left: 40px;
+        }
+        .content-stuff {
+            position: relative;
+            top: -5px;
+            margin-left: 20px;
+        }
+        .points {
+            float: right;
+            position: relative;
+            top: -55px;
+            margin-right: 20px;
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+    </style>
+    <title>Profile | {{ _user }}</title>
+</head>
+<body>
+
+    <div id="main">
+        <h1>Profil | <strong>{{ _user }}</strong></h2>
+            <div onclick="window.location.href = '/login{{token}}/logout'" id="top">
+                <p id="addnew">Odjava</p>
+        </div>
+    </div>
+        <br>
+    {% for item in data %}
+    <div onclick="window.location.href = '/dashboard/task/{{ item.name }}'" class="item">
+        <p class="content-stuff">
+            <strong>{{ item.name }}</strong>
+        </p>
+        <p class="points">Bodovi: <strong>{{ item.points }}</strong></p>
+    </div> <br>
+    {% endfor %}
+    <br><br>
+</body>

@@ -1,0 +1,4 @@
+{% for item in arr %}
+<strong>{{ item.user }}</strong>
+<p onclick="window.location.href= '/teacher/task/{{task}}/comments/{{item.id}}'">{{ item.comment }}</p> <br>
+{% endfor %}

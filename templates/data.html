@@ -1,0 +1,13 @@
+<script>
+    fetch('/api/data', {
+        method: 'POST',
+        body: JSON.stringify({
+            'token': '{{ data }}'
+        })
+    }).then(resp => {
+        return resp.json()
+    }).then(function (x){
+        console.log(x)
+    })
+</script>
+<p id="da">{"mesaage": "press ctrl+shift+i and navigate to console pannel to view database"}</p>

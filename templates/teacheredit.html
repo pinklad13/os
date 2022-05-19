@@ -1,0 +1,30 @@
+<head>
+    <script>
+        function edit() {
+            var username = document.getElementById('username')
+            var password = document.getElementById('password')
+            var mail = document.getElementById('email')
+            var tries = document.getElementById('tries')
+            var subject = document.getElementById('subject')
+            fetch('/api/addteacher', {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    'prename': '{{ n.username }}',
+                    'username': username.value,
+                    'password': password.value,
+                    'mail': mail.value,
+                    'tries': tries.value,
+                    'subject': subject.value
+                })
+            })
+        }
+    </script>
+</head>
+<body>
+    <input value="{{ n.username }}"  type="text" id="username"><br>
+<input value="{{ n.password }}" type="text" id="password"><br>
+<input value="{{ n.mail }}" type="text" id="email"><br>
+<input value="{{ n.tries }}" type="text" id="tries"><br>
+<input value="{{ n.subject }}" type="text" id="subject"><br>
+<button onclick="edit()">Sacuvaj</button>
+</body>

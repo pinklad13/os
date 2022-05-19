@@ -1,0 +1,24 @@
+<head>
+    <script>
+        
+        function comment() {
+            commentN = document.getElementById('comment')
+         commentN = commentN.value 
+            fetch('/api/reply', {
+                method: 'POST',
+                body: JSON.stringify({
+                    'id': '{{ id }}',
+                    'comment': commentN,
+                    'task': '{{ task }}'
+                })
+            })
+        }
+    </script>
+</head>
+<body>
+    <strong>{{arr.user}}</strong>{{ arr.comment }} <br>
+{% for i in arr.thread %}
+<strong>{{i.user}}</strong>{{ i.comment }} <br>
+{% endfor %}
+<input id="comment"><button onclick="comment()">Dodaj komantar</button>
+</body>

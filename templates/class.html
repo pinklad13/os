@@ -1,0 +1,16 @@
+
+<script>
+    const t = '{{ data }}'
+</script>
+
+<script src="/static/sfijvweo9tv2qe7gvub.js">
+</script>
+
+<h2>Class Name</h2>
+<input id="name" placeholder="Class name" type="text">
+<br><br>
+{% for item in arr %}
+<input value="{{item}}" type="checkbox" class="subjects">{{ item }} <br>
+{% endfor %}
+<br>
+<button onclick="send()">Create Class</button>

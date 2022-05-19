@@ -1,0 +1,31 @@
+<script>
+    function rename() {
+        var username = document.getElementById('username')
+        var password = document.getElementById('password')
+        var email = document.getElementById('email')
+        var tries = document.getElementById('tries')
+        username = username.value 
+        password = password.value
+        email = email.value 
+        tries = tries.value
+        fetch('/api/student', {
+            method: 'PATCH',
+            body:JSON.stringify({
+                'email': email,
+                'tries': tries,
+                'name': '{{ name }}',
+                'username': username,
+                'password': password,
+                'token': '{{ token }}',
+                'prename': '{{ arr.username }}'
+            })
+        })
+    }
+</script>
+
+
+<input value="{{ arr.username }}" placeholder="{{ arr.username }}" type="text" name="" id="username">
+<input value="{{ arr.password }}" placeholder="{{ arr.password }}" type="text" name="" id="password"><br>
+<input value="{{ arr.email }}" placeholder="{{ arr.email }}" type="text" name="" id="email"><br>
+<input value="{{ arr.tries }}" placeholder="{{ arr.tries }}" type="text" name="" id="tries"><br>
+<button onclick="rename()" >Update Student</button>

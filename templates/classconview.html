@@ -1,0 +1,19 @@
+<script>
+    function rename() {
+        var name = document.getElementById('name')
+        name = name.value
+        fetch('/api/class', {
+            method: 'PATCH',
+            body:JSON.stringify({
+                'prename': '{{ data.name }}',
+                'token': '{{ token }}',
+                'name': name
+            })
+        })
+    }
+</script>
+
+<input id="name" placeholder="{{ data.name }}" type="text"><button onclick="rename()">Update name</button>
+{% for item in data.students %}
+<p onclick="window.location.href = document.URL + '/student/{{ item.username }}'">{{item.username}}</p><br>
+{% endfor %}

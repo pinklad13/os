@@ -1,0 +1,41 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    var url = document.cookie
+        var content = url.split(';')
+        var data = []
+        for (var i = 0; i < content.length; i++) {
+            data.push(content[i].split('='));
+        }
+        for (var i = 0; i < data.length; i++) {
+            if (data[i][0]==' token' || data[i][0]=='token')
+                window.location.href = data[i][1]
+        }
+    function login() {
+        var u = document.getElementById('us12')
+        var p = document.getElementById('pa12')
+        u = u.value 
+        p = p.value
+        fetch('/api/admin', {
+            method: 'POST',
+            body: JSON.stringify({
+                'username': u,
+                'password': p
+            })
+        }).then(resp => {
+                return resp.json()
+            }).then(function (data) {
+                console.log(data)
+                if (data['status'] == 'authorized') {
+                    u = u+p
+                    username = CryptoJS.SHA224(u);
+                    window.location.href = document.URL + '/' + username
+                    document.cookie = 'token=/admin/'+username
+                }
+            })
+
+    }
+</script>
+
+<input id="us12" placeholder="Username" type="text"><br><br>
+<input id="pa12" placeholder="Password" type="text"><br><br>
+<button onclick="login()" >Login</button>
